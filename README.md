@@ -11,6 +11,6 @@ Feito baseado no mapa: https://www.highcharts.com/demo/maps/marker-clusters
 
 
 
-<img src="img/sample.png">
+<img src="sample.PNG">
 
 Enjoy!!! 
