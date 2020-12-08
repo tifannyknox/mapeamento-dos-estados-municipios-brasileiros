@@ -1,0 +1,2670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content="Mapa do Brasil com os principais Estados/Municipios brasileiros"/>
+    <meta name="author" content="Danubia Barreto @tifannyknox"/>
+    <title>Mapeamento dos principais estados e municipios Brasileiros</title>
+    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+          type="text/css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.6/proj4.js"></script>
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/marker-clusters.js"></script>
+    <script src="https://code.highcharts.com/modules/coloraxis.js"></script>
+
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <script src="https:code.highcharts.com/mapdata/countries/br/br-all.js"></script>
+
+</head>
+<body>
+<div class="container" id="container" style="height: 700px; min-width: 500px;max-width: 800px; margin: 0 auto">
+</div>
+</body>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+<script>
+    let data = [
+        {
+            "name": "RONDÔNIA",
+            "lat": -10.83,
+            "lon": -63.34,
+            "hab": "1.777.225"
+        },
+        {
+            "name": "ACRE",
+            "lat": -8.77,
+            "lon": -70.55,
+            "hab": "881.935"
+        },
+        {
+            "name": "AMAZONAS",
+            "lat": -3.47,
+            "lon": -65.1,
+            "hab": "4.144.597"
+        },
+        {
+            "name": "RORAIMA",
+            "lat": 1.99,
+            "lon": -61.33,
+            "hab": "605.761"
+        },
+        {
+            "name": "PARÁ",
+            "lat": -3.79,
+            "lon": -52.48,
+            "hab": "8.602.865"
+        },
+        {
+            "name": "AMAPÁ",
+            "lat": 1.41,
+            "lon": -51.77,
+            "hab": "845.731"
+        },
+        {
+            "name": "TOCANTINS",
+            "lat": -9.46,
+            "lon": -48.26,
+            "hab": "1.572.866"
+        },
+        {
+            "name": "MATO GROSSO DO SUL",
+            "lat": -20.51,
+            "lon": -54.54,
+            "hab": "2.778.986 "
+        },
+        {
+            "name": "MATO GROSSO",
+            "lat": -12.64,
+            "lon": -55.42,
+            "hab": "3.484.466 "
+        },
+        {
+            "name": "GOIÁS",
+            "lat": -15.98,
+            "lon": -49.86,
+            "hab": "7.018.354 "
+        },
+        {
+            "name": "DISTRITO FEDERAL",
+            "lat": -15.83,
+            "lon": -47.86,
+            "hab": "3.015.268 "
+        },
+
+        {
+            "name": "ESPÍRITO SANTO",
+            "lat": -19.19,
+            "lon": -40.34,
+            "hab": "4.018.650"
+        },
+
+        {
+            "name": "RIO DE JANEIRO",
+            "lat": -22.25,
+            "lon": -42.66,
+            "hab": "17.264.943"
+        },
+
+        {
+            "name": "SÃO PAULO",
+            "lat": -22.19,
+            "lon": -48.79,
+            "hab": "45.919.049"
+        },
+
+        {
+            "name": "MINAS GERAIS",
+            "lat": -18.1,
+            "lon": -44.38,
+            "hab": "21.168.791"
+        },
+
+        {
+            "name": "MARANHÃO",
+            "lat": -5.42,
+            "lon": -45.44,
+            "hab": "7.075.181"
+        },
+
+        {
+            "name": "PIAUÍ",
+            "lat": -6.6,
+            "lon": -42.28,
+            "hab": "3.273.227"
+        },
+
+        {
+            "name": "CEARÁ",
+            "lat": -5.2,
+            "lon": -39.53,
+            "hab": "9.132.078"
+        },
+
+        {
+            "name": "RIO GRANDE DO NORTE",
+            "lat": -5.81,
+            "lon": -36.59,
+            "hab": "3.506.853"
+        },
+
+        {
+            "name": "PARAÍBA",
+            "lat": -7.28,
+            "lon": -36.72,
+            "hab": "4.018.127"
+        },
+
+        {
+            "name": "PERNAMBUCO",
+            "lat": -8.38,
+            "lon": -37.86,
+            "hab": "9.557.071"
+        },
+
+        {
+            "name": "ALAGOAS",
+            "lat": -9.62,
+            "lon": -36.82,
+            "hab": "3.337.357"
+        },
+
+        {
+            "name": "SERGIPE",
+            "lat": -10.57,
+            "lon": -37.45,
+            "hab": "2.298.696"
+        },
+
+        {
+            "name": "BAHIA",
+            "lat": -13.29,
+            "lon": -41.71,
+            "hab": "14.873.064"
+        },
+
+        {
+            "name": "Paraná",
+            "lat": -24.89,
+            "lon": -51.55,
+
+            "hab": "11.433.957"
+        },
+
+        {
+            "name": "Santa Catarina",
+            "lat": -27.45,
+            "lon": -50.95,
+
+            "hab": "7.164.788",
+        },
+        {
+            "name": "Rio Grande do Sul",
+            "lat": -30.17,
+            "lon": -53.5,
+
+            "hab": "11.377.239"
+        },
+        {
+            "name": "MANAUS",
+            "lat": -3.11866,
+            "lon": -60.0212,
+
+            "hab": "2.182.763"
+        },
+
+        {
+            "name": "BELÉM",
+            "lat": -1.4554,
+            "lon": -48.4898,
+
+            "hab": "1.492.745"
+        },
+
+        {
+            "name": "ANANINDEUA",
+            "lat": -1.36391,
+            "lon": -48.3743,
+
+            "hab": "530.598"
+        },
+
+        {
+            "name": "PORTO VELHO",
+            "lat": -8.76077,
+            "lon": -63.8999,
+            "hab": "529.544"
+        },
+
+        {
+            "name": "MACAPÁ",
+            "lat": 0.034934,
+            "lon": -51.0694,
+            "hab": "503.327"
+        },
+
+        {
+            "name": "RIO BRANCO",
+            "lat": -9.97499,
+            "lon": -67.8243,
+
+            "hab": "407.310"
+        },
+
+        {
+            "name": "BOA VISTA",
+            "lat": 2.82384,
+            "lon": -60.6753,
+
+            "hab": "399.213"
+        },
+
+        {
+            "name": "SANTARÉM",
+            "lat": -2.43849,
+            "lon": -54.6996,
+            "hab": "304.584"
+        },
+
+        {
+            "name": "PALMAS",
+            "lat": -10.24,
+            "lon": -48.3558,
+            "hab": "299.127"
+        },
+
+        {
+            "name": "MARABÁ",
+            "lat": -5.38075,
+            "lon": -49.1327,
+            "hab": "279.349"
+        },
+
+        {
+            "name": "PARAUAPEBAS",
+            "lat": -6.06781,
+            "lon": -49.9037,
+            "hab": "208.273"
+        },
+
+        {
+            "name": "CASTANHAL",
+            "lat": -1.29797,
+            "lon": -47.9167,
+            "hab": "200.793"
+        },
+
+        {
+            "name": "ARAGUAÍNA",
+            "lat": -7.19238,
+            "lon": -48.2044,
+
+            "hab": "180.470"
+        },
+
+        {
+            "name": "ABAETETUBA",
+            "lat": -1.72183,
+            "lon": -48.8788,
+            "hab": "157.698"
+        },
+
+        {
+            "name": "CAMETÁ",
+            "lat": -2.24295,
+            "lon": -49.4979,
+            "hab": "137.890"
+        },
+
+        {
+            "name": "MARITUBA",
+            "lat": -1.36002,
+            "lon": -48.3421,
+            "hab": "131.521"
+        },
+
+        {
+            "name": "JI-PARANÁ",
+            "lat": -10.8777,
+            "lon": -61.9322,
+
+            "hab": "128.969"
+        },
+
+        {
+            "name": "SÃO FÉLIX DO XINGU",
+            "lat": -6.64254,
+            "lon": -51.9904,
+            "hab": "128.481"
+        },
+
+        {
+            "name": "BRAGANÇA",
+            "lat": -1.06126,
+            "lon": -46.7826,
+
+            "hab": "127.686"
+        },
+
+        {
+            "name": "BARCARENA",
+            "lat": -1.51187,
+            "lon": -48.6195,
+            "hab": "124.680"
+        },
+
+        {
+            "name": "SANTANA",
+            "lat": -0.045434,
+            "lon": -51.1729,
+            "hab": "121.364"
+        },
+
+        {
+            "name": "ALTAMIRA",
+            "lat": -3.20407,
+            "lon": -52.21,
+
+            "hab": "114.594"
+        },
+
+        {
+            "name": "PARINTINS",
+            "lat": -2.63741,
+            "lon": -56.729,
+
+            "hab": "114.273"
+        },
+
+        {
+            "name": "TUCURUÍ",
+            "lat": -3.7657,
+            "lon": -49.6773,
+
+            "hab": "113.659"
+        },
+
+        {
+            "name": "PARAGOMINAS",
+            "lat": -3.00212,
+            "lon": -47.3527,
+            "hab": "113.145"
+        },
+
+        {
+            "name": "ARIQUEMES",
+            "lat": -9.90571,
+            "lon": -63.0325,
+
+            "hab": "107.863"
+        },
+
+        {
+            "name": "TAILÂNDIA",
+            "lat": -2.94584,
+            "lon": -48.9489,
+            "hab": "106.339"
+        },
+
+        {
+            "name": "BREVES",
+            "lat": -1.68036,
+            "lon": -50.4791,
+            "hab": "102.701"
+        },
+
+        {
+            "name": "ITACOATIARA",
+            "lat": -3.13861,
+            "lon": -58.4449,
+
+            "hab": "101.337"
+        },
+
+        {
+            "name": "ITAITUBA",
+            "lat": -4.2667,
+            "lon": -55.9926,
+
+            "hab": "101.247"
+        },
+
+        {
+            "name": "BRASÍLIA",
+            "lat": -15.7795,
+            "lon": -47.9297,
+            "hab": "3.015.268 "
+        },
+
+        {
+            "name": "GOIANIA",
+            "lat": -21.536,
+            "lon": -43.1957,
+            "hab": "1.516.113 "
+        },
+
+        {
+            "name": "CAMPO GRANDE",
+            "lat": -20.4486,
+            "lon": -54.6295,
+            "hab": "895.982 "
+        },
+
+        {
+            "name": "CUIABÁ",
+            "lat": -15.601,
+            "lon": -56.0974,
+            "hab": "612.547 "
+        },
+
+        {
+            "name": "APARECIDA DE GOIÂNIA",
+            "lat": -16.8198,
+            "lon": -49.2469,
+            "hab": "578.179 "
+        },
+
+        {
+            "name": "ANÁPOLIS",
+            "lat": -16.3281,
+            "lon": -48.953,
+            "hab": "386.923 "
+        },
+
+        {
+            "name": "VÁRZEA GRANDE",
+            "lat": -15.6458,
+            "lon": -56.1322,
+            "hab": "284.971 "
+        },
+
+        {
+            "name": "RIO VERDE",
+            "lat": -17.7923,
+            "lon": -50.9192,
+            "hab": "235.674 "
+        },
+
+        {
+            "name": "RONDONÓPOLIS",
+            "lat": -16.4673,
+            "lon": -54.6372,
+            "hab": "232.491 "
+        },
+
+        {
+            "name": "DOURADOS",
+            "lat": -22.2231,
+            "lon": -54.812,
+            "hab": "222.949"
+        },
+
+        {
+            "name": "ÁGUAS LINDAS DE GOIÁS",
+            "lat": -15.7617,
+            "lon": -48.2816,
+            "hab": "212.440 "
+        },
+
+        {
+            "name": "LUZIÂNIA",
+            "lat": -16.253,
+            "lon": -47.95,
+            "hab": "208.299 "
+        },
+
+        {
+            "name": "VALPARAÍSO DE GOIÁS",
+            "lat": -16.0651,
+            "lon": -47.9757,
+            "hab": "168.468 "
+        },
+
+        {
+            "name": "SINOP",
+            "lat": -11.8604,
+            "lon": -55.5091,
+            "hab": "142.996 "
+        },
+
+        {
+            "name": "TRINDADE",
+            "lat": -16.6517,
+            "lon": -49.4927,
+            "hab": "127.599 "
+        },
+
+        {
+            "name": "FORMOSA",
+            "lat": -15.54,
+            "lon": -47.337,
+            "hab": "121.617 "
+        },
+
+        {
+            "name": "TRÊS LAGOAS",
+            "lat": -20.7849,
+            "lon": -51.7007,
+            "hab": "121.388 "
+        },
+
+        {
+            "name": "NOVO GAMA",
+            "lat": -16.0592,
+            "lon": -48.0417,
+            "hab": "115.711 "
+        },
+
+        {
+            "name": "SENADOR CANEDO",
+            "lat": -16.7084,
+            "lon": -49.0914,
+            "hab": "115.371 "
+        },
+
+        {
+            "name": "CORUMBÁ",
+            "lat": -19.0077,
+            "lon": -57.651,
+            "hab": "111.435 "
+        },
+
+        {
+            "name": "CATALÃO",
+            "lat": -18.1656,
+            "lon": -47.944,
+            "hab": "108.823 "
+        },
+
+        {
+            "name": "ITUMBIARA",
+            "lat": -18.4093,
+            "lon": -49.2158,
+            "hab": "104.742 "
+        },
+
+        {
+            "name": "TANGARÁ DA SERRA",
+            "lat": -14.6229,
+            "lon": -57.4933,
+            "hab": "103.750 "
+        },
+
+        {
+            "name": "JATAÍ",
+            "lat": -17.8784,
+            "lon": -51.7204,
+            "hab": "100.882 "
+        },
+
+        {
+            "name": "SÃO PAULO",
+            "lat": -23.5329,
+            "lon": -46.6395,
+            "hab": "12.252.023"
+        },
+
+        {
+            "name": "RIO DE JANEIRO",
+            "lat": -22.9129,
+            "lon": -43.2003,
+            "hab": "6.718.903"
+        },
+
+        {
+            "name": "BELO HORIZONTE",
+            "lat": -19.9102,
+            "lon": -43.9266,
+
+            "hab": "2.512.070"
+        },
+
+        {
+            "name": "GUARULHOS",
+            "lat": -23.4538,
+            "lon": -46.5333,
+
+            "hab": "1.379.182"
+        },
+
+        {
+            "name": "CAMPINAS",
+            "lat": -22.9053,
+            "lon": -47.0659,
+
+            "hab": "1.204.073"
+        },
+
+        {
+            "name": "SÃO GONÇALO",
+            "lat": -22.8268,
+            "lon": -43.0634,
+
+            "hab": "1.084.839"
+        },
+
+        {
+            "name": "DUQUE DE CAXIAS",
+            "lat": -22.7858,
+            "lon": -43.3049,
+
+            "hab": "919.596"
+        },
+
+        {
+            "name": "SÃO BERNARDO DO CAMPO",
+            "lat": -23.6914,
+            "lon": -46.5646,
+
+            "hab": "838.936"
+        },
+
+        {
+            "name": "NOVA IGUAÇU",
+            "lat": -22.7556,
+            "lon": -43.4603,
+
+            "hab": "821.128"
+        },
+
+        {
+            "name": "SÃO JOSÉ DOS CAMPOS",
+            "lat": -23.1896,
+            "lon": -45.8841,
+
+            "hab": "721.944"
+        },
+
+        {
+            "name": "SANTO ANDRÉ",
+            "lat": -23.6737,
+            "lon": -46.5432,
+
+            "hab": "718.773"
+        },
+
+        {
+            "name": "RIBEIRÃO PRETO",
+            "lat": -21.1699,
+            "lon": -47.8099,
+
+            "hab": "703.293"
+        },
+
+        {
+            "name": "OSASCO",
+            "lat": -23.5324,
+            "lon": -46.7916,
+
+            "hab": "698.418"
+        },
+
+        {
+            "name": "UBERLÂNDIA",
+            "lat": -18.9141,
+            "lon": -48.2749,
+
+            "hab": "691.305"
+        },
+
+        {
+            "name": "SOROCABA",
+            "lat": -23.4969,
+            "lon": -47.4451,
+            "hab": "679.378"
+        },
+
+        {
+            "name": "CONTAGEM",
+            "lat": -19.9321,
+            "lon": -44.0539,
+
+            "hab": "663.855"
+        },
+
+        {
+            "name": "JUIZ DE FORA",
+            "lat": -21.7595,
+            "lon": -43.3398,
+
+            "hab": "568.873"
+        },
+
+        {
+            "name": "SERRA",
+            "lat": -20.121,
+            "lon": -40.3074,
+
+            "hab": "517.510"
+        },
+
+        {
+            "name": "NITERÓI",
+            "lat": -22.8832,
+            "lon": -43.1034,
+
+            "hab": "513.584"
+        },
+
+        {
+            "name": "BELFORD ROXO",
+            "lat": -22.764,
+            "lon": -43.3992,
+
+            "hab": "510.906"
+        },
+
+        {
+            "name": "CAMPOS DOS GOYTACAZES",
+            "lat": -21.7622,
+            "lon": -41.3181,
+
+            "hab": "507.548"
+        },
+
+        {
+            "name": "VILA VELHA",
+            "lat": -20.3417,
+            "lon": -40.2875,
+            "hab": "493.838"
+        },
+
+        {
+            "name": "MAUÁ",
+            "lat": -23.6677,
+            "lon": -46.4613,
+
+            "hab": "472.912"
+        },
+
+        {
+            "name": "SÃO JOÃO DE MERITI",
+            "lat": -22.8058,
+            "lon": -43.3729,
+
+            "hab": "472.406"
+        },
+
+        {
+            "name": "SÃO JOSÉ DO RIO PRETO",
+            "lat": -20.8113,
+            "lon": -49.3758,
+
+            "hab": "460.671"
+        },
+
+        {
+            "name": "MOGI DAS CRUZES",
+            "lat": -23.5208,
+            "lon": -46.1854,
+
+            "hab": "445.842"
+        },
+
+        {
+            "name": "BETIM",
+            "lat": -19.9668,
+            "lon": -44.2008,
+
+            "hab": "439.340"
+        },
+
+        {
+            "name": "SANTOS",
+            "lat": -23.9535,
+            "lon": -46.335,
+
+            "hab": "433.311"
+        },
+
+        {
+            "name": "DIADEMA",
+            "lat": -23.6813,
+            "lon": -46.6205,
+
+            "hab": "423.884"
+        },
+
+        {
+            "name": "JUNDIAÍ",
+            "lat": -23.1852,
+            "lon": -46.8974,
+
+            "hab": "418.962"
+        },
+
+        {
+            "name": "MONTES CLAROS",
+            "lat": -16.7282,
+            "lon": -43.8578,
+
+            "hab": "409.341"
+        },
+
+        {
+            "name": "PIRACICABA",
+            "lat": -22.7338,
+            "lon": -47.6476,
+
+            "hab": "404.142"
+        },
+
+        {
+            "name": "CARAPICUÍBA",
+            "lat": -23.5235,
+            "lon": -46.8407,
+            "hab": "400.927"
+        },
+
+        {
+            "name": "CARIACICA",
+            "lat": -20.2632,
+            "lon": -40.4165,
+            "hab": "381.285"
+        },
+
+        {
+            "name": "BAURU",
+            "lat": -22.3246,
+            "lon": -49.0871,
+            "hab": "376.818"
+        },
+
+        {
+            "name": "ITAQUAQUECETUBA",
+            "lat": -23.4835,
+            "lon": -46.3457,
+            "hab": "370.821"
+        },
+
+        {
+            "name": "SÃO VICENTE",
+            "lat": -23.9574,
+            "lon": -46.3883,
+            "hab": "365.798"
+        },
+
+        {
+            "name": "VITÓRIA",
+            "lat": -20.3155,
+            "lon": -40.3128,
+            "hab": "362.097"
+        },
+
+        {
+            "name": "FRANCA",
+            "lat": -20.5352,
+            "lon": -47.4039,
+            "hab": "353.187"
+        },
+
+        {
+            "name": "RIBEIRÃO DAS NEVES",
+            "lat": -19.7621,
+            "lon": -44.0844,
+            "hab": "334.858"
+        },
+
+        {
+            "name": "UBERABA",
+            "lat": -19.7472,
+            "lon": -47.9381,
+            "hab": "333.783"
+        },
+
+        {
+            "name": "PRAIA GRANDE",
+            "lat": -24.0084,
+            "lon": -46.4121,
+            "hab": "325.073"
+        },
+
+        {
+            "name": "GUARUJÁ",
+            "lat": -23.9888,
+            "lon": -46.258,
+            "hab": "320.459"
+        },
+
+        {
+            "name": "TAUBATÉ",
+            "lat": -23.0104,
+            "lon": -45.5593,
+            "hab": "314.924"
+        },
+
+        {
+            "name": "PETRÓPOLIS",
+            "lat": -22.52,
+            "lon": -43.1926,
+            "hab": "306.191"
+        },
+
+        {
+            "name": "LIMEIRA",
+            "lat": -22.566,
+            "lon": -47.397,
+            "hab": "306.114"
+        },
+
+        {
+            "name": "SUZANO",
+            "lat": -23.5448,
+            "lon": -46.3112,
+            "hab": "297.637"
+        },
+
+        {
+            "name": "TABOÃO DA SERRA",
+            "lat": -23.6019,
+            "lon": -46.7526,
+            "hab": "289.664"
+        },
+
+        {
+            "name": "SUMARÉ",
+            "lat": -22.8204,
+            "lon": -47.2728,
+            "hab": "282.441"
+        },
+
+        {
+            "name": "GOVERNADOR VALADARES",
+            "lat": -18.8545,
+            "lon": -41.9555,
+            "hab": "279.885"
+        },
+
+        {
+            "name": "BARUERI",
+            "lat": -23.5057,
+            "lon": -46.879,
+            "hab": "274.182"
+        },
+
+        {
+            "name": "EMBU DAS ARTES",
+            "lat": -23.6437,
+            "lon": -46.8579,
+            "hab": "273.726"
+        },
+
+        {
+            "name": "VOLTA REDONDA",
+            "lat": -22.5202,
+            "lon": -44.0996,
+            "hab": "273.012"
+        },
+
+        {
+            "name": "IPATINGA",
+            "lat": -19.4703,
+            "lon": -42.5476,
+            "hab": "263.410"
+        },
+
+        {
+            "name": "MACAÉ",
+            "lat": -22.3768,
+            "lon": -41.7848,
+            "hab": "256.672"
+        },
+
+        {
+            "name": "SÃO CARLOS",
+            "lat": -22.0174,
+            "lon": -47.886,
+            "hab": "251.983"
+        },
+
+        {
+            "name": "INDAIATUBA",
+            "lat": -23.0816,
+            "lon": -47.2101,
+            "hab": "251.627"
+        },
+
+        {
+            "name": "COTIA",
+            "lat": -23.6022,
+            "lon": -46.919,
+            "hab": "249.210"
+        },
+
+        {
+            "name": "MAGÉ",
+            "lat": -22.6632,
+            "lon": -43.0315,
+            "hab": "245.071"
+        },
+
+        {
+            "name": "ITABORAÍ",
+            "lat": -22.7565,
+            "lon": -42.8639,
+            "hab": "240.592"
+        },
+
+        {
+            "name": "SETE LAGOAS",
+            "lat": -19.4569,
+            "lon": -44.2413,
+            "hab": "239.639"
+        },
+
+        {
+            "name": "AMERICANA",
+            "lat": -22.7374,
+            "lon": -47.3331,
+
+            "hab": "239.597"
+        },
+
+        {
+            "name": "MARÍLIA",
+            "lat": -22.2171,
+            "lon": -49.9501,
+
+            "hab": "238.882"
+        },
+
+        {
+            "name": "DIVINÓPOLIS",
+            "lat": -20.1446,
+            "lon": -44.8912,
+
+            "hab": "238.230"
+        },
+
+        {
+            "name": "ITAPEVI",
+            "lat": -23.5488,
+            "lon": -46.9327,
+
+            "hab": "237.700"
+        },
+
+        {
+            "name": "ARARAQUARA",
+            "lat": -21.7845,
+            "lon": -48.178,
+
+            "hab": "236.072"
+        },
+
+        {
+            "name": "JACAREÍ",
+            "lat": -23.2983,
+            "lon": -45.9658,
+
+            "hab": "233.662"
+        },
+
+        {
+            "name": "HORTOLÂNDIA",
+            "lat": -22.8529,
+            "lon": -47.2143,
+
+            "hab": "230.851"
+        },
+
+        {
+            "name": "PRESIDENTE PRUDENTE",
+            "lat": -22.1207,
+            "lon": -51.3925,
+
+            "hab": "228.743"
+        },
+
+        {
+            "name": "CABO FRIO",
+            "lat": -22.8894,
+            "lon": -42.0286,
+
+            "hab": "219.863"
+        },
+
+        {
+            "name": "SANTA LUZIA",
+            "lat": -19.7548,
+            "lon": -43.8497,
+
+            "hab": "219.134"
+        },
+
+        {
+            "name": "CACHOEIRO DE ITAPEMIRIM",
+            "lat": -20.8462,
+            "lon": -41.1198,
+
+            "hab": "208.978"
+        },
+
+        {
+            "name": "RIO CLARO",
+            "lat": -22.72,
+            "lon": -44.1419,
+
+            "hab": "206.424"
+        },
+
+        {
+            "name": "ANGRA DOS REIS",
+            "lat": -23.0011,
+            "lon": -44.3196,
+            "hab": "203.785"
+        },
+
+        {
+            "name": "ARAÇATUBA",
+            "lat": -21.2076,
+            "lon": -50.4401,
+
+            "hab": "197.016"
+        },
+
+        {
+            "name": "FERRAZ DE VASCONCELOS",
+            "lat": -23.5411,
+            "lon": -46.371,
+
+            "hab": "194.276"
+        },
+
+        {
+            "name": "SANTA BARBARA D’OESTE",
+            "lat": -22.7553,
+            "lon": -47.4143,
+
+            "hab": "193.475"
+        },
+
+        {
+            "name": "NOVA FRIBURGO",
+            "lat": -22.2932,
+            "lon": -42.5377,
+
+            "hab": "190.631"
+        },
+
+        {
+            "name": "BARRA MANSA",
+            "lat": -22.5481,
+            "lon": -44.1752,
+            "hab": "184.412"
+        },
+
+        {
+            "name": "TERESÓPOLIS",
+            "lat": -22.4165,
+            "lon": -42.9752,
+
+            "hab": "182.594"
+        },
+
+        {
+            "name": "IBIRITÉ",
+            "lat": -20.0252,
+            "lon": -44.0569,
+
+            "hab": "180.204"
+        },
+
+        {
+            "name": "MESQUITA",
+            "lat": -22.8028,
+            "lon": -43.4601,
+
+            "hab": "176.103"
+        },
+
+        {
+            "name": "FRANCISCO MORATO",
+            "lat": -23.2792,
+            "lon": -46.7448,
+
+            "hab": "175.844"
+        },
+
+        {
+            "name": "ITAPECERICA DA SERRA",
+            "lat": -23.7161,
+            "lon": -46.8572,
+
+            "hab": "175.693"
+        },
+
+        {
+            "name": "ITU",
+            "lat": -23.2544,
+            "lon": -47.2927,
+
+            "hab": "173.939"
+        },
+
+        {
+            "name": "LINHARES",
+            "lat": -19.3946,
+            "lon": -40.0643,
+
+            "hab": "173.555"
+        },
+
+        {
+            "name": "BRAGANÇA PAULISTA",
+            "lat": -22.9527,
+            "lon": -46.5419,
+
+            "hab": "168.668"
+        },
+
+        {
+            "name": "PINDAMONHANGABA",
+            "lat": -22.9246,
+            "lon": -45.4613,
+
+            "hab": "168.328"
+        },
+
+        {
+            "name": "POÇOS DE CALDAS",
+            "lat": -21.78,
+            "lon": -46.5692,
+            "hab": "167.397"
+        },
+
+        {
+            "name": "ITAPETININGA",
+            "lat": -23.5886,
+            "lon": -48.0483,
+            "hab": "163.901"
+        },
+
+        {
+            "name": "NILÓPOLIS",
+            "lat": -22.8057,
+            "lon": -43.4233,
+            "hab": "162.485"
+        },
+
+        {
+            "name": "MARICÁ",
+            "lat": -22.9354,
+            "lon": -42.8246,
+            "hab": "161.207"
+        },
+
+        {
+            "name": "SÃO CAETANO DO SUL",
+            "lat": -23.6229,
+            "lon": -46.5548,
+            "hab": "161.127"
+        },
+
+        {
+            "name": "FRANCO DA ROCHA",
+            "lat": -23.3229,
+            "lon": -46.729,
+            "hab": "154.489"
+        },
+
+        {
+            "name": "PATOS DE MINAS",
+            "lat": -18.5699,
+            "lon": -46.5013,
+            "hab": "152.488"
+        },
+
+        {
+            "name": "MOGI GUAÇU",
+            "lat": -22.3675,
+            "lon": -46.9428,
+            "hab": "151.888"
+        },
+
+        {
+            "name": "POUSO ALEGRE",
+            "lat": -22.2266,
+            "lon": -45.9389,
+            "hab": "150.737"
+        },
+
+        {
+            "name": "RIO DAS OSTRAS",
+            "lat": -22.5174,
+            "lon": -41.9475,
+            "hab": "150.674"
+        },
+
+        {
+            "name": "QUEIMADOS",
+            "lat": -22.7102,
+            "lon": -43.5518,
+
+            "hab": "150.319"
+        },
+
+        {
+            "name": "JAÚ",
+            "lat": -22.2936,
+            "lon": -48.5592,
+
+            "hab": "150.252"
+        },
+
+        {
+            "name": "BOTUCATU",
+            "lat": -22.8837,
+            "lon": -48.4437,
+
+            "hab": "146.497"
+        },
+
+        {
+            "name": "ATIBAIA",
+            "lat": -23.1171,
+            "lon": -46.5563,
+
+            "hab": "142.761"
+        },
+
+        {
+            "name": "TEÓFILO OTONI",
+            "lat": -17.8595,
+            "lon": -41.5087,
+
+            "hab": "140.592"
+        },
+
+        {
+            "name": "SANTANA DE PARNAÍBA",
+            "lat": -23.4439,
+            "lon": -46.9178,
+
+            "hab": "139.447"
+        },
+
+        {
+            "name": "BARBACENA",
+            "lat": -21.2214,
+            "lon": -43.7703,
+
+            "hab": "137.313"
+        },
+
+        {
+            "name": "SABARÁ",
+            "lat": -19.884,
+            "lon": -43.8263,
+
+            "hab": "136.344"
+        },
+
+        {
+            "name": "VARGINHA",
+            "lat": -21.5556,
+            "lon": -45.4364,
+
+            "hab": "135.558"
+        },
+
+        {
+            "name": "ARARAS",
+            "lat": -22.3572,
+            "lon": -47.3842,
+
+            "hab": "134.236"
+        },
+
+        {
+            "name": "ITAGUAÍ",
+            "lat": -22.8636,
+            "lon": -43.7798,
+
+            "hab": "133.019"
+        },
+
+        {
+            "name": "ARARUAMA",
+            "lat": -22.8697,
+            "lon": -42.3326,
+
+            "hab": "132.400"
+        },
+
+        {
+            "name": "RESENDE",
+            "lat": -22.4705,
+            "lon": -44.4509,
+
+            "hab": "131.341"
+        },
+
+        {
+            "name": "CUBATÃO",
+            "lat": -23.8911,
+            "lon": -46.424,
+
+            "hab": "130.705"
+        },
+
+        {
+            "name": "SÃO MATEUS",
+            "lat": -18.7214,
+            "lon": -39.8579,
+
+            "hab": "130.611"
+        },
+
+        {
+            "name": "VALINHOS",
+            "lat": -22.9698,
+            "lon": -46.9974,
+
+            "hab": "129.193"
+        },
+
+        {
+            "name": "CONSELHEIRO LAFAIETE",
+            "lat": -20.6634,
+            "lon": -43.7846,
+
+            "hab": "128.589"
+        },
+
+        {
+            "name": "VESPASIANO",
+            "lat": -19.6883,
+            "lon": -43.9239,
+
+
+            "hab": "127.601"
+        },
+
+        {
+            "name": "SERTÃOZINHO",
+            "lat": -21.1316,
+            "lon": -47.9875,
+
+            "hab": "125.815"
+        },
+
+        {
+            "name": "JANDIRA",
+            "lat": -23.5275,
+            "lon": -46.9023,
+
+            "hab": "124.937"
+        },
+
+        {
+            "name": "GUARAPARI",
+            "lat": -20.6772,
+            "lon": -40.5093,
+
+            "hab": "124.859"
+        },
+
+        {
+            "name": "BIRIGUI",
+            "lat": -21.291,
+            "lon": -50.3432,
+            "hab": "123.638"
+        },
+
+        {
+            "name": "RIBEIRÃO PIRES",
+            "lat": -23.7067,
+            "lon": -46.4058,
+
+            "hab": "123.393"
+        },
+
+        {
+            "name": "COLATINA",
+            "lat": -19.5493,
+            "lon": -40.6269,
+
+            "hab": "122.499"
+        },
+
+        {
+            "name": "VOTORANTIM",
+            "lat": -23.5446,
+            "lon": -47.4388,
+
+            "hab": "122.480"
+        },
+
+        {
+            "name": "BARRETOS",
+            "lat": -20.5531,
+            "lon": -48.5698,
+
+            "hab": "122.098"
+        },
+
+        {
+            "name": "CATANDUVA",
+            "lat": -21.1314,
+            "lon": -48.977,
+
+            "hab": "121.862"
+        },
+
+        {
+            "name": "VÁRZEA PAULISTA",
+            "lat": -23.2136,
+            "lon": -46.8234,
+
+            "hab": "121.838"
+        },
+
+        {
+            "name": "GUARATINGUETÁ",
+            "lat": -22.8075,
+            "lon": -45.1938,
+
+            "hab": "121.798"
+        },
+
+        {
+            "name": "TATUÍ",
+            "lat": -23.3392426,
+            "lon": -48.0308857,
+
+            "hab": "121.766"
+        },
+
+        {
+            "name": "CARAGUATATUBA",
+            "lat": -23.6125,
+            "lon": -45.4125,
+
+            "hab": "121.532"
+        },
+
+        {
+            "name": "ITATIBA",
+            "lat": -23.0035,
+            "lon": -46.8464,
+
+            "hab": "120.858"
+        },
+
+        {
+            "name": "ITABIRA",
+            "lat": -19.6239,
+            "lon": -43.2312,
+
+            "hab": "120.060"
+        },
+
+        {
+            "name": "SALTO",
+            "lat": -23.1996,
+            "lon": -47.2931,
+
+            "hab": "118.663"
+        },
+
+        {
+            "name": "POÁ",
+            "lat": -23.5333,
+            "lon": -46.3473,
+
+            "hab": "117.452"
+        },
+
+        {
+            "name": "ARAGUARI",
+            "lat": -18.6456,
+            "lon": -48.1934,
+
+            "hab": "117.267"
+        },
+
+        {
+            "name": "UBÁ",
+            "lat": -21.1204,
+            "lon": -42.9359,
+
+            "hab": "115.552"
+        },
+
+        {
+            "name": "PASSOS",
+            "lat": -20.7193,
+            "lon": -46.609,
+
+            "hab": "114.679"
+        },
+
+        {
+            "name": "OURINHOS",
+            "lat": -22.9797,
+            "lon": -49.8697,
+
+            "hab": "113.542"
+        },
+
+        {
+            "name": "CORONEL FABRICIANO",
+            "lat": -19.5179,
+            "lon": -42.6276,
+
+            "hab": "109.855"
+        },
+
+        {
+            "name": "PAULÍNIA",
+            "lat": -22.7542,
+            "lon": -47.1488,
+
+            "hab": "109.424"
+        },
+
+        {
+            "name": "MURIAÉ",
+            "lat": -21.13,
+            "lon": -42.3693,
+
+            "hab": "108.763"
+        },
+
+        {
+            "name": "ARAXÁ",
+            "lat": -19.5902,
+            "lon": -46.9438,
+
+            "hab": "106.229"
+        },
+
+        {
+            "name": "JAPERI",
+            "lat": -22.6435,
+            "lon": -43.6602,
+            "hab": "104.768"
+        },
+
+        {
+            "name": "ITUIUTABA",
+            "lat": -18.9772,
+            "lon": -49.4639,
+            "hab": "104.671"
+        },
+
+        {
+            "name": "SÃO PEDRO DA ALDEIA",
+            "lat": -22.8429,
+            "lon": -42.1026,
+
+            "hab": "104.476"
+        },
+
+        {
+            "name": "ASSIS",
+            "lat": -22.66,
+            "lon": -50.4183,
+            "hab": "104.386"
+        },
+
+        {
+            "name": "LAVRAS",
+            "lat": -21.248,
+            "lon": -45.0009,
+            "hab": "103.773"
+        },
+
+        {
+            "name": "LEME",
+            "lat": -22.1809,
+            "lon": -47.3841,
+            "hab": "103.391"
+        },
+
+        {
+            "name": "ITAPERUNA",
+            "lat": -21.1997,
+            "lon": -41.8799,
+            "hab": "103.019"
+        },
+
+        {
+            "name": "NOVA SERRANA",
+            "lat": -19.8713,
+            "lon": -44.9847,
+            "hab": "102.693"
+        },
+
+        {
+            "name": "ITANHAÉM",
+            "lat": -24.1736,
+            "lon": -46.788,
+            "hab": "101.816"
+        },
+
+        {
+            "name": "CAIEIRAS",
+            "lat": -23.3607,
+            "lon": -46.7397,
+            "hab": "101.470"
+        },
+
+        {
+            "name": "ARACRUZ",
+            "lat": -19.82,
+            "lon": -40.2764,
+            "hab": "101.220"
+        },
+
+        {
+            "name": "BARRA DO PIRAÍ",
+            "lat": -22.4715,
+            "lon": -43.8269,
+            "hab": "100.374"
+        },
+
+        {
+            "name": "MAIRIPORÃ",
+            "lat": -23.3171,
+            "lon": -46.5897,
+            "hab": "100.179"
+        },
+
+        {
+            "name": "SALVADOR",
+            "lat": -12.9718,
+            "lon": -38.5011,
+            "hab": "2.872.347"
+        },
+
+        {
+            "name": "FORTALEZA",
+            "lat": -3.71664,
+            "lon": -38.5423,
+            "hab": "2.669.342"
+        },
+
+        {
+            "name": "RECIFE",
+            "lat": -8.04666,
+            "lon": -34.8771,
+            "hab": "1.645.727"
+        },
+
+        {
+            "name": "SÃO LUÍS",
+            "lat": -2.53874,
+            "lon": -44.2825,
+            "hab": "1.101.884"
+        },
+
+        {
+            "name": "MACEIÓ",
+            "lat": -9.66599,
+            "lon": -35.735,
+            "hab": "1.018.948"
+        },
+
+        {
+            "name": "TERESINA",
+            "lat": -5.09194,
+            "lon": -42.8034,
+            "hab": "864.845"
+        },
+
+        {
+            "name": "NATAL",
+            "lat": -5.79357,
+            "lon": -35.1986,
+            "hab": "884.122"
+        },
+
+        {
+            "name": "JOÃO PESSOA",
+            "lat": -7.11509,
+            "lon": -34.8641,
+            "hab": "809.015"
+        },
+
+        {
+            "name": "JABOATÃO DOS GUARARAPES",
+            "lat": -8.11298,
+            "lon": -35.015,
+            "hab": "702.298"
+        },
+
+        {
+            "name": "ARACAJU",
+            "lat": -10.9091,
+            "lon": -37.0677,
+            "hab": "657.013"
+        },
+
+        {
+            "name": "FEIRA DE SANTANA",
+            "lat": -12.2664,
+            "lon": -38.9663,
+            "hab": "614.872"
+        },
+
+        {
+            "name": "CAMPINA GRANDE",
+            "lat": -7.22196,
+            "lon": -35.8731,
+            "hab": "409.731"
+        },
+
+        {
+            "name": "OLINDA",
+            "lat": -8.01017,
+            "lon": -34.8545,
+            "hab": "392.482"
+        },
+
+        {
+            "name": "CAUCAIA",
+            "lat": -3.72797,
+            "lon": -38.6619,
+            "hab": "361.400"
+        },
+
+        {
+            "name": "CARUARU",
+            "lat": -8.28455,
+            "lon": -35.9699,
+
+            "hab": "361.118"
+        },
+
+        {
+            "name": "PETROLINA",
+            "lat": -9.38866,
+            "lon": -40.5027,
+            "hab": "349.145"
+        },
+
+        {
+            "name": "VITÓRIA DA CONQUISTA",
+            "lat": -14.8615,
+            "lon": -40.8442,
+
+            "hab": "341.597"
+        },
+
+        {
+            "name": "PAULISTA",
+            "lat": -7.93401,
+            "lon": -34.8684,
+            "hab": "331.774"
+        },
+
+        {
+            "name": "CAMAÇARI",
+            "lat": -12.6996,
+            "lon": -38.3263,
+            "hab": "299.132"
+        },
+
+        {
+            "name": "MOSSORÓ",
+            "lat": -5.18374,
+            "lon": -37.3474,
+
+            "hab": "297.378"
+        },
+
+        {
+            "name": "JUAZEIRO DO NORTE",
+            "lat": -7.19621,
+            "lon": -39.3076,
+
+            "hab": "274.207"
+        },
+
+        {
+            "name": "PARNAMIRIM",
+            "lat": -5.91116,
+            "lon": -35.271,
+            "hab": "261.469"
+        },
+
+        {
+            "name": "IMPERATRIZ",
+            "lat": -5.51847,
+            "lon": -47.4777,
+
+            "hab": "258.682"
+        },
+
+        {
+            "name": "MARACANAÚ",
+            "lat": -3.86699,
+            "lon": -38.6259,
+
+            "hab": "227.886"
+        },
+
+        {
+            "name": "ARAPIRACA",
+            "lat": -9.75487,
+            "lon": -36.6615,
+
+            "hab": "231.747"
+        },
+
+        {
+            "name": "JUAZEIRO",
+            "lat": -9.41622,
+            "lon": -40.5033,
+            "hab": "216.707"
+        },
+
+        {
+            "name": "ITABUNA",
+            "lat": -14.7876,
+            "lon": -39.2781,
+
+            "hab": "213.223"
+        },
+
+        {
+            "name": "SOBRAL",
+            "lat": -3.68913,
+            "lon": -40.3482,
+
+            "hab": "208.935"
+        },
+
+        {
+            "name": "CABO DE SANTO AGOSTINHO",
+            "lat": -8.28218,
+            "lon": -35.0253,
+
+            "hab": "207.048"
+        },
+
+        {
+            "name": "LAURO DE FREITAS",
+            "lat": -12.8978,
+            "lon": -38.321,
+
+            "hab": "198.440"
+        },
+
+        {
+            "name": "NOSSA SENHORA DO SOCORRO",
+            "lat": -10.8468,
+            "lon": -37.1231,
+            "hab": "183.628"
+        },
+
+        {
+            "name": "SÃO JOSÉ DE RIBAMAR",
+            "lat": -2.54704,
+            "lon": -44.0597,
+            "hab": "177.687"
+        },
+
+        {
+            "name": "TIMON",
+            "lat": -5.09769,
+            "lon": -42.8329,
+
+            "hab": "169.107"
+        },
+
+        {
+            "name": "CAXIAS",
+            "lat": -4.86505,
+            "lon": -43.3617,
+            "hab": "164.880"
+        },
+
+        {
+            "name": "ILHÉUS",
+            "lat": -14.793,
+            "lon": -39.046,
+            "hab": "162.327"
+        },
+
+        {
+            "name": "TEIXEIRA DE FREITAS",
+            "lat": -17.5399,
+            "lon": -39.74,
+
+            "hab": "160.487"
+        },
+
+        {
+            "name": "CAMARAGIBE",
+            "lat": -8.02351,
+            "lon": -34.9782,
+
+            "hab": "157.828"
+        },
+
+        {
+            "name": "JEQUIÉ",
+            "lat": -13.8509,
+            "lon": -40.0877,
+
+            "hab": "155.966"
+        },
+
+        {
+            "name": "BARREIRAS",
+            "lat": -12.1439,
+            "lon": -44.9968,
+
+            "hab": "155.439"
+        },
+
+        {
+            "name": "PARNAÍBA",
+            "lat": -2.90585,
+            "lon": -41.7754,
+
+            "hab": "153.078"
+        },
+
+        {
+            "name": "ALAGOINHAS",
+            "lat": -12.1335,
+            "lon": -38.4208,
+
+            "hab": "151.596"
+        },
+
+        {
+            "name": "PORTO SEGURO",
+            "lat": -16.4435,
+            "lon": -39.0643,
+
+            "hab": "148.686"
+        },
+
+        {
+            "name": "GARANHUNS",
+            "lat": -8.88243,
+            "lon": -36.4966,
+
+            "hab": "139.788"
+        },
+
+        {
+            "name": "VITÓRIA DE SANTO ANTÃO",
+            "lat": -8.12819,
+            "lon": -35.2976,
+
+            "hab": "138.757"
+        },
+
+        {
+            "name": "SIMÕES FILHO",
+            "lat": -12.7866,
+            "lon": -38.4029,
+
+            "hab": "134.377"
+        },
+
+        {
+            "name": "CRATO",
+            "lat": -7.2153,
+            "lon": -39.4103,
+
+            "hab": "132.123"
+        },
+
+        {
+            "name": "ITAPIPOCA",
+            "lat": -3.49933,
+            "lon": -39.5836,
+            "hab": "129.358"
+        },
+
+        {
+            "name": "MARANGUAPE",
+            "lat": -3.89143,
+            "lon": -38.6829,
+            "hab": "128.978"
+        },
+
+        {
+            "name": "CODÓ",
+            "lat": -4.45562,
+            "lon": -43.8924,
+            "hab": "122.859"
+        },
+
+        {
+            "name": "PAULO AFONSO",
+            "lat": -9.3983,
+            "lon": -38.2216,
+            "hab": "117.782"
+        },
+
+        {
+            "name": "IGARASSU",
+            "lat": -7.82881,
+            "lon": -34.9013,
+            "hab": "117.019"
+        },
+
+        {
+            "name": "EUNÁPOLIS",
+            "lat": -16.3715,
+            "lon": -39.5821,
+            "hab": "113.380"
+        },
+
+        {
+            "name": "SÃO LOURENÇO DA MATA",
+            "lat": -8.00684,
+            "lon": -35.0124,
+
+            "hab": "113.230"
+        },
+
+        {
+            "name": "AÇAILÂNDIA",
+            "lat": -4.94714,
+            "lon": -47.5004,
+
+            "hab": "112.445"
+        },
+
+        {
+            "name": "SANTA CRUZ DO CAPIBARIBE",
+            "lat": -7.94802,
+            "lon": -36.2061,
+            "hab": "107.937"
+        },
+
+        {
+            "name": "PATOS",
+            "lat": -7.01743,
+            "lon": -37.2747,
+            "hab": "107.605"
+        },
+
+        {
+            "name": "BACABAL",
+            "lat": -4.22447,
+            "lon": -44.7832,
+            "hab": "104.949"
+        },
+
+        {
+            "name": "LAGARTO",
+            "lat": -10.9136,
+            "lon": -37.6689,
+            "hab": "104.408"
+        },
+
+        {
+            "name": "IGUATU",
+            "lat": -6.36281,
+            "lon": -39.2892,
+            "hab": "102.498"
+        },
+
+        {
+            "name": "SANTO ANTONIO DE JESUS",
+            "lat": -12.9614,
+            "lon": -39.2584,
+            "hab": "101.512"
+        },
+
+        {
+            "name": "Curitiba",
+            "lat": -25.4195,
+            "lon": -49.2646,
+
+            "hab": "1.933.105"
+        },
+
+        {
+            "name": "Porto Alegre",
+            "lat": -30.0318,
+            "lon": -51.2065,
+
+            "hab": "1.483.771"
+        },
+
+        {
+            "name": "Joinville",
+            "lat": -26.3045,
+            "lon": -48.8487,
+            "hab": "590.466"
+        },
+
+        {
+            "name": "Londrina",
+            "lat": -23.304,
+            "lon": -51.1691,
+            "hab": "569.733"
+        },
+
+        {
+            "name": "Caxias Do Sul",
+            "lat": -29.1629,
+            "lon": -51.1792,
+            "hab": "510.906"
+        },
+
+        {
+            "name": "Florianópolis",
+            "lat": -27.5945,
+            "lon": -48.5477,
+            "hab": "500.973"
+        },
+
+        {
+            "name": "Maringá",
+            "lat": -23.4205,
+            "lon": -51.9333,
+            "hab": "423.666"
+        },
+
+        {
+            "name": "Blumenau",
+            "lat": -26.9155,
+            "lon": -49.0709,
+
+            "hab": "357.199"
+        },
+
+        {
+            "name": "Ponta Grossa",
+            "lat": -25.0916,
+            "lon": -50.1668,
+            "hab": "351.736"
+        },
+
+        {
+            "name": "Canoas",
+            "lat": -29.9128,
+            "lon": -51.1857,
+            "hab": "346.616"
+        },
+
+        {
+            "name": "Pelotas",
+            "lat": -31.7649,
+            "lon": -52.3371,
+            "hab": "342.405"
+        },
+
+        {
+            "name": "Cascavel",
+            "lat": -24.9573,
+            "lon": -53.459,
+            "hab": "328.454"
+        },
+
+        {
+            "name": "São José Dos Pinhais",
+            "lat": -25.5313,
+            "lon": -49.2031,
+
+            "hab": "323.340"
+        },
+
+        {
+            "name": "Santa Maria",
+            "lat": -29.6868,
+            "lon": -53.8149,
+
+            "hab": "282.123"
+        },
+
+        {
+            "name": "Gravataí",
+            "lat": -29.9413,
+            "lon": -50.9869,
+
+            "hab": "281.519"
+        },
+
+        {
+            "name": "Foz Do Iguaçu",
+            "lat": -25.5427,
+            "lon": -54.5827,
+
+            "hab": "258.532"
+        },
+
+        {
+            "name": "Viamão",
+            "lat": -30.0819,
+            "lon": -51.0194,
+
+            "hab": "255.224"
+        },
+
+        {
+            "name": "Novo Hamburgo",
+            "lat": -29.6875,
+            "lon": -51.1328,
+
+            "hab": "246.748 habitante"
+        },
+
+        {
+            "name": "São José",
+            "lat": -27.6136,
+            "lon": -48.6366,
+
+            "hab": "246.586"
+        },
+
+        {
+            "name": "Colombo",
+            "lat": -25.2925,
+            "lon": -49.2262,
+
+            "hab": "243.726"
+        },
+
+        {
+            "name": "São Leopoldo",
+            "lat": -29.7545,
+            "lon": -51.1498,
+
+            "hab": "236.835"
+        },
+
+        {
+            "name": "Chapecó",
+            "lat": -27.1004,
+            "lon": -52.6152,
+
+            "hab": "220.367"
+        },
+
+        {
+            "name": "Itajaí",
+            "lat": -26.9101,
+            "lon": -48.6705,
+
+            "hab": "219.536"
+        },
+
+        {
+            "name": "Criciúma",
+            "lat": -28.6723,
+            "lon": -49.3729,
+
+            "hab": "215.186"
+        },
+
+        {
+            "name": "Alvorada",
+            "lat": -29.9914,
+            "lon": -51.0809,
+
+            "hab": "210.305"
+        },
+
+        {
+            "name": "Rio Grande",
+            "lat": -32.0349,
+            "lon": -52.1071,
+
+            "hab": "211.005"
+        },
+
+        {
+            "name": "Passo Fundo",
+            "lat": -28.2576,
+            "lon": -52.4091,
+
+            "hab": "203.275"
+        },
+
+        {
+            "name": "Guarapuava",
+            "lat": -25.3902,
+            "lon": -51.4623,
+
+            "hab": "181.504"
+        },
+
+        {
+            "name": "Jaraguá Do Sul",
+            "lat": -26.4851,
+            "lon": -49.0713,
+
+            "hab": "177.697"
+        },
+
+        {
+            "name": "Palhoça",
+            "lat": -27.6455,
+            "lon": -48.6697,
+
+            "hab": "171.797"
+        },
+
+        {
+            "name": "Lages",
+            "lat": -27.815,
+            "lon": -50.3259,
+            "hab": "157.544"
+        },
+
+        {
+            "name": "Paranaguá",
+            "lat": -25.5161,
+            "lon": -48.5225,
+            "hab": "154.936"
+        },
+
+        {
+            "name": "Araucária",
+            "lat": -25.5859,
+            "lon": -49.4047,
+            "hab": "143.843"
+        },
+
+        {
+            "name": "Balneário Camboriú",
+            "lat": -26.9926,
+            "lon": -48.6352,
+            "hab": "142.295"
+        },
+
+        {
+            "name": "Sapucaia Do Sul",
+            "lat": -29.8276,
+            "lon": -51.145,
+            "hab": "141.075"
+        },
+
+        {
+            "name": "Toledo",
+            "lat": -24.7246,
+            "lon": -53.7412,
+            "hab": "140.635"
+        },
+
+        {
+            "name": "Apucarana",
+            "lat": -23.55,
+            "lon": -51.4635,
+            "hab": "134.996"
+        },
+
+        {
+            "name": "Brusque",
+            "lat": -27.0977,
+            "lon": -48.9107,
+            "hab": "134.723"
+        },
+
+        {
+            "name": "Pinhais",
+            "lat": -25.4429,
+            "lon": -49.1927,
+            "hab": "132.157"
+        },
+
+        {
+            "name": "Campo Largo",
+            "lat": -25.4525,
+            "lon": -49.529,
+            "hab": "132.002"
+        },
+
+        {
+            "name": "Santa Cruz Do Sul",
+            "lat": -29.722,
+            "lon": -52.4343,
+            "hab": "130.416"
+        },
+
+        {
+            "name": "Cachoeirinha",
+            "lat": -29.9472,
+            "lon": -51.1016,
+            "hab": "130.293"
+        },
+
+        {
+            "name": "Uruguaiana",
+            "lat": -29.7614,
+            "lon": -57.0853,
+            "hab": "126.970"
+        },
+
+        {
+            "name": "Arapongas",
+            "lat": -23.4153,
+            "lon": -51.4259,
+            "hab": "123.027"
+        },
+
+        {
+            "name": "Bagé",
+            "lat": -31.3297,
+            "lon": -54.0999,
+            "hab": "121.143"
+        },
+
+        {
+            "name": "Bento Gonçalves",
+            "lat": -29.1662,
+            "lon": -51.5165,
+            "hab": "120.454"
+        },
+
+        {
+            "name": "Almirante Tamandaré",
+            "lat": -25.3188,
+            "lon": -49.3037,
+            "hab": "118.623"
+        },
+
+        {
+            "name": "Piraquara",
+            "lat": -25.4422,
+            "lon": -49.0624,
+            "hab": "113.036"
+        },
+
+        {
+            "name": "Umuarama",
+            "lat": -23.7656,
+            "lon": -53.3201,
+            "hab": "111.557"
+        },
+
+        {
+            "name": "Cambé",
+            "lat": -23.2766,
+            "lon": -51.2798,
+            "hab": "106.533"
+        },
+
+        {
+            "name": "Erechim",
+            "lat": -27.6364,
+            "lon": -52.2697,
+            "hab": "105.862"
+        },
+
+        {
+            "name": "Tubarão",
+            "lat": -28.4713,
+            "lon": -49.0144,
+            "hab": "105.680"
+        },
+
+        {
+            "name": "Fazenda Rio Grande",
+            "lat": -25.6624,
+            "lon": -49.3073,
+            "hab": "100.209"
+        }
+
+    ];
+    Highcharts.mapChart('container', {
+        chart: {
+            map: 'countries/br/br-all',
+            animation: true
+        },
+        title: {
+            text: 'Consulta Mapa por Estado/Municipio'
+        },
+        subtitle: {
+            text: 'Fonte: IBGE'
+        },
+        mapNavigation: {
+            enabled: true
+        },
+        tooltip: {
+            headerFormat: '',
+            pointFormat: '<b>{point.name}</b><br><b>{point.hab}</b> Habitantes<br><b>Lat:</b> {point.lat}<br><b>Long:</b> {point.lon}',
+            clusterFormat: 'Munícipios Brasileiros',
+        },
+        plotOptions: {
+            mappoint: {
+                cluster: {
+                    enabled: true,
+                    layoutAlgorithm: {
+                        type: 'kmeans',
+                        distance: 50
+                    },
+                    marker: {
+                        fillColor: 'rgba(67, 67, 72, 0.85)'
+                    }
+                }
+            }
+        },
+        series: [{
+            name: 'Basemap',
+            borderColor: '#A0A0A0',
+            nullColor: ' rgba(64,224,208)',
+            showInLegend: false
+        }, {
+            type: 'mappoint',
+            enableMouseTracking: true,
+            colorKey: 'clusterPointsAmount',
+            name: 'Municípios',
+            data: data
+        }]
+    });
+</script>
+
+</html>
